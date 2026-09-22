@@ -48,32 +48,34 @@ sending messages over HTTP.
 
 Every time you press "New joke", this round trip happens:
 
-```
-        +-------------------------------------------------+
-        |  BROWSER                                        |
-        |                                                 |
-        |  public/index.html   the page's structure       |
-        |  public/styles.css   what it looks like         |
-        |  public/main.js      asks for jokes, shows them |
-        +-------------------------------------------------+
-                |                                 ^
-                | (1) GET /api/jokes/random       | (4) the JSON reply
-                v                                 |
-        +-------------------------------------------------+
-        |  SERVER   Node + Express                        |
-        |                                                 |
-        |  src/server.js     opens the port               |
-        |       |                                         |
-        |  src/app.js        matches the URL to a handler |
-        |       |                                         |
-        |  src/routes/       (2) read the request,        |
-        |       |                choose a status code     |
-        |       |                                         |
-        |  src/services/     (3) the actual logic:        |
-        |       |                pick, filter, find       |
-        |       |                                         |
-        |  src/data/             jokes.json               |
-        +-------------------------------------------------+
+```mermaid
+%% Shapes are left transparent on purpose. Material renders mermaid into a
+%% closed shadow root and colours the label text from the active palette, so a
+%% fixed fill would end up pale-on-pale in dark mode. Letting the page show
+%% through means the text always sits on the page's own background, in both
+%% themes and on GitHub.
+flowchart TB
+    subgraph browser["BROWSER"]
+        UI["public/index.html + styles.css<br>structure and styling"]
+        MAIN["public/main.js<br>asks for jokes, puts them on the page"]
+    end
+
+    subgraph server["SERVER - Node + Express"]
+        APP["src/app.js<br>matches the URL to a handler"]
+        ROUTES["src/routes/jokes.js<br>reads the request, picks a status code"]
+        SVC["src/services/jokeService.js<br>the logic: pick, filter, find"]
+        DATA[("src/data/jokes.json")]
+        APP --> ROUTES --> SVC --> DATA
+    end
+
+    MAIN -- "(1) GET /api/jokes/random" --> APP
+    SVC -. "(2) the joke, as JSON" .-> MAIN
+
+    classDef file fill:transparent,stroke:#b08d1e,stroke-width:1.5px
+    class UI,MAIN,APP,ROUTES,SVC,DATA file
+
+    style browser fill:transparent,stroke:#9aa0ae,stroke-dasharray:4 3
+    style server  fill:transparent,stroke:#9aa0ae,stroke-dasharray:4 3
 ```
 
 1. `public/main.js`, running in the browser, calls `fetch("/api/jokes/random")`.
