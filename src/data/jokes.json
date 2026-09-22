@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "category": "animals",
+    "setup": "What do you call a magic dog?",
+    "punchline": "A labracadabrador."
+  },
+  {
+    "id": 2,
+    "category": "wordplay",
+    "setup": "What did one hat say to the other?",
+    "punchline": "You wait here. I'll go on ahead."
+  },
+  {
+    "id": 3,
+    "category": "animals",
+    "setup": "Why did the frog take the bus to work?",
+    "punchline": "His car got toad away."
+  },
+  {
+    "id": 4,
+    "category": "food",
+    "setup": "Why did the yogurt go to the art exhibition?",
+    "punchline": "Because it was cultured."
+  },
+  {
+    "id": 5,
+    "category": "wordplay",
+    "setup": "What do you call an apology written in dots and dashes?",
+    "punchline": "Re-Morse code."
+  },
+  {
+    "id": 6,
+    "category": "tech",
+    "setup": "Why do programmers prefer dark mode?",
+    "punchline": "Because light attracts bugs."
+  },
+  {
+    "id": 7,
+    "category": "tech",
+    "setup": "How many programmers does it take to change a light bulb?",
+    "punchline": "None. That's a hardware problem."
+  },
+  {
+    "id": 8,
+    "category": "food",
+    "setup": "What do you call cheese that isn't yours?",
+    "punchline": "Nacho cheese."
+  },
+  {
+    "id": 9,
+    "category": "tech",
+    "setup": "Why did the developer go broke?",
+    "punchline": "Because they used up all their cache."
+  },
+  {
+    "id": 10,
+    "category": "animals",
+    "setup": "What do you call a bear with no teeth?",
+    "punchline": "A gummy bear."
+  }
+]

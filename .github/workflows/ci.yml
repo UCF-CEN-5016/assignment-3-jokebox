@@ -1,0 +1,38 @@
+name: Lint & Test
+
+# Runs on every push to main and on every pull request. The pull request
+# trigger is the one that matters for this assignment: it is what puts a red X
+# or a green check on your PR *before* you merge, and Render is configured to
+# deploy only after these checks pass.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# This workflow only reads the checkout and runs lint and tests. It never
+# writes to the repository, so it is given no write scope. Worth spelling out:
+# this repo is a template, so every student repository generated from it
+# inherits this workflow, and leaving permissions unset would give each of them
+# CI running with the default token scope.
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit and API tests
+        run: npm test

@@ -1,0 +1,30 @@
+{
+  "name": "jokebox",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A small joke API and web UI used as the deployment and CI/CD assignment for CEN 5016.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:unit-only": "vitest run tests/jokeService.test.js",
+    "test:api-only": "vitest run tests/routes",
+    "smoke": "node scripts/smoke.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.9.0",
+    "globals": "^17.11.0",
+    "supertest": "^7.1.4",
+    "vitest": "^4.1.11"
+  }
+}

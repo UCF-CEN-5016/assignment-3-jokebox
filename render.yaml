@@ -1,0 +1,24 @@
+# Render Blueprint: this file *is* the deployment configuration.
+#
+# Clicking through a dashboard to set a build command works once and then lives
+# only in that dashboard, where nobody can review it and nothing records why it
+# changed. Describing the service here instead means the deployment is version
+# controlled, diffable, and reviewed in a pull request like any other code.
+# That idea - infrastructure as code - is the reason this file exists.
+#
+# Docs: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: jokebox
+    runtime: node
+    plan: free
+    # Region is overridden in the dashboard; pick the one closest to you.
+    region: ohio
+    buildCommand: npm ci
+    startCommand: npm start
+    # Render polls this path to decide whether the instance is serving.
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
